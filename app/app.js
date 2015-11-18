@@ -19,19 +19,53 @@
 	        newPost.set("title", title);
 	        newPost.set("content", content);
 
-			newPost.save({
-			    success: function(object) {
-			        $(".success").show();
-			        getPosts().then(function(posts) {
-			            $scope.posts = posts;
-			        });
-			    },
-			    error: function(error) {
-			        console.log("~Log Error: " + error.message);
-			        $(".error").show();
-			    }
-			});
+	        //Get file from form input
+	        var fileElement = $("#post-file")[0];
+	        var filePath = $("#post-file").val();
+	        var fileName = filePath.split("\\").pop();
 
+	        if (fileElement.files.length > 0) {
+	        	var file = fileElement.files[0];
+	        	var newFile = new Parse.File(fileName, file);
+	        	newFile.save({
+	        		success: function() {
+	        			//
+	        		}, error: function(file, error){
+	        			console.log("Parse Error: "+ error.message);
+	        		}
+	        	}).then(function(theFile) {	        		
+	        		newPost.set("file", theFile);
+	        		
+	        		// WHEN ... newFile.save is completed
+	        		// upload the file to the database first, then get pointer to save post
+		        	newPost.save({
+					    success: function() {
+					        $(".success").show();
+					        getPosts().then(function(posts) {
+					            $scope.posts = posts;
+					        });
+					    },
+					    error: function(error) {
+					        console.log("~Log Error: " + error.message);
+					        $(".error").show();
+					    }
+					});	        		
+	        	});   
+	        	// return defer.promise;)
+	        } else {
+		        newPost.save({
+				    success: function() {
+				        $(".success").show();
+				        getPosts().then(function(posts) {
+				            $scope.posts = posts;
+				        });
+				    },
+				    error: function(error) {
+				        console.log("~Log Error: " + error.message);
+				        $(".error").show();
+				    }
+				});
+	        }
     	});
 
 		function getPosts() {

@@ -21,11 +21,11 @@
 
 	        //Get file from form input
 	        var fileElement = $("#post-file")[0];
-	        var filePath = $("#post-file").val();
-	        var fileName = filePath.split("\\").pop();
 
 	        if (fileElement.files.length > 0) {
-	        	var file = fileElement.files[0];
+	        	var file = fileElement.files[0];	        	
+	        	var fileName = file.name;
+	        	
 	        	var newFile = new Parse.File(fileName, file);
 	        	newFile.save({
 	        		success: function() {
@@ -50,7 +50,7 @@
 					        $(".error").show();
 					    }
 					});	        		
-	        	});   
+	        	});
 	        	// return defer.promise;)
 	        } else {
 		        newPost.save({

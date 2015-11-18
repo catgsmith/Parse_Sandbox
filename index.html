@@ -17,26 +17,20 @@
 <body ng-controller="myController">
   
   <div id="main">
-    <h1>You're ready to use Parse!</h1>
+    <h1>Working with Parse and AngularJS!</h1>
 
-    <p>Read the documentation and start building your JavaScript app:</p>
+    <form id="post-form">
+        <p><input id="post-title" type="text"></p>
+        <p><textarea id="post-content"></textarea></p>
+        <p><input id="post-submit" type="submit"></p>
+    </form>
 
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
-
-    <div style="display:none" class="error">
-      Looks like there was a problem. 
-    </div>
 
     <div style="display:none" class="success">
-      <p>We've also just created a Post using the following code:</p>
-      
-        <code>
-          newPost.set("title", "Post from web site");<br/>
-          newPost.set("content", "This is content provided by Parse_Sandbox");<br/>
-        </code>
+      <p>Success : New Post added.</p>
+    </div>
+    <div style="display:none" class="error">
+      Looks like there was a problem. 
     </div>
   </div>
 

@@ -9,22 +9,25 @@
     myApp.controller('myController', function ($scope) {
 
 		var Post = Parse.Object.extend("Post");
-		var newPost = new Post();
 
-		newPost.set("title", "Post from web site");
-		newPost.set("content", "This is content provided by Parse_Sandbox");
+		$("#post-form").submit(function(event) { // listen for the submit action on this form
+	        event.preventDefault(); // stay on this page (avoid page refresh)
+	        var title = $("#post-title").val();
+	        var content = $("#post-content").val();
+	 
+	        var newPost = new Post(); // create a new object instance from the Post class
+	        newPost.set("title", title);
+	        newPost.set("content", content);
 
-		newPost.save({
-			success: function(object) {
-				$(".success").show();
-			},
-			error: function(error) {
-				console.log("~Log Error: " + error.message);
-				$(".error").show();
-			}
-		});
-
-
-    });
-
+			newPost.save({
+				success: function(object) {
+					$(".success").show();
+				},
+				error: function(error) {
+					console.log("~Log Error: " + error.message);
+					$(".error").show();
+				}
+			});
+    	});
+	});
 }());	

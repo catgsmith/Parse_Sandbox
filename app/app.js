@@ -8,14 +8,18 @@
 
     myApp.controller('myController', function ($scope) {
 
-		var TestObject = Parse.Object.extend("TestObject");
-		var testObject = new TestObject();
+		var Post = Parse.Object.extend("Post");
+		var newPost = new Post();
 
-		testObject.save({foo: "bar"}, {
+		newPost.set("title", "Post from web site");
+		newPost.set("content", "This is content provided by Parse_Sandbox");
+
+		newPost.save({
 			success: function(object) {
 				$(".success").show();
 			},
-			error: function(model, error) {
+			error: function(error) {
+				console.log("~Log Error: " + error.message);
 				$(".error").show();
 			}
 		});

@@ -27,16 +27,15 @@
     </ul>
 
     <div style="display:none" class="error">
-      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+      Looks like there was a problem. 
     </div>
 
     <div style="display:none" class="success">
-      <p>We've also just created your first object using the following code:</p>
+      <p>We've also just created a Post using the following code:</p>
       
         <code>
-          var TestObject = Parse.Object.extend("TestObject");<br/>
-          var testObject = new TestObject();<br/>
-          testObject.save({foo: "bar"});
+          newPost.set("title", "Post from web site");<br/>
+          newPost.set("content", "This is content provided by Parse_Sandbox");<br/>
         </code>
     </div>
   </div>

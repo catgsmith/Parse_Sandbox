@@ -6,6 +6,8 @@
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/reset.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
@@ -26,10 +28,13 @@
         <p><input id="post-file" type="file"></p>
         <p><input id="post-submit" type="submit"></p>
     </form>
+
       <ul id="list-posts">
           <li ng-repeat="post in posts">
             <h3>{{post.title}}</h3>
-            <p>{{post.content}}<p>
+            <p>{{post.content}}</p>
+            <span id="post_img">
+            <img class="thumbnail" ng-if="post.image" ng-src="{{post.image}}"> </span>                      
           </li>
       </ul>
 

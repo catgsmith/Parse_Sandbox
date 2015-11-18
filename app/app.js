@@ -81,6 +81,11 @@
 	                  var post = {};
 	                  post.title = parse_post.get("title");
 	                  post.content = parse_post.get("content");
+
+	                  if (parse_post.get("file")) {
+	                  	var file = parse_post.get("file");
+	                  	post.image = file.url();
+	                  }
 	                  posts.push(post);
 	              });
 	              

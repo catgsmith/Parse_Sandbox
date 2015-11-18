@@ -24,7 +24,12 @@
         <p><textarea id="post-content"></textarea></p>
         <p><input id="post-submit" type="submit"></p>
     </form>
-
+      <ul id="list-posts">
+          <li ng-repeat="post in posts">
+            <h3>{{post.title}}</h3>
+            <p>{{post.content}}<p>
+          </li>
+      </ul>
 
     <div style="display:none" class="success">
       <p>Success : New Post added.</p>
